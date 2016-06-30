@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @version 1.0 6/29/16
  */
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -24,4 +24,5 @@ public class UserController {
         System.out.println("admin");
         return adminService.getAdminByName(username).toString();
     }
+
 }

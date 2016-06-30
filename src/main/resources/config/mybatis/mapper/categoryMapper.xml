@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.gentlemen.easybuy.dao.CategoryDao">
+
+    <select id="getById" resultType="com.gentlemen.easybuy.entity.Category">
+        SELECT * FROM category WHERE id = #{id}
+    </select>
+
+    <select id="getAllCategories" resultType="java.util.List">
+        SELECT * FROM category
+    </select>
+
+    <select id="getParent" parameterType="com.gentlemen.easybuy.entity.Category"
+            resultType="com.gentlemen.easybuy.entity.Category">
+        SELECT * FROM category WHERE id = #{parent}
+    </select>
+
+    <insert id="addCategory" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category (name, description, parent)
+        VALUE (#{name}, #{description}, #{parent})
+    </insert>
+
+    <update id="updateCategory">
+        UPDATE category
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="parent != null">
+                parent = #{parent}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteCategory">
+        DELETE FROM category WHERE id = #{id}
+    </delete>
+
+</mapper>

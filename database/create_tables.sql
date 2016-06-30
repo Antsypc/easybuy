@@ -28,7 +28,8 @@ CREATE TABLE category (
     id          INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  # 主键
     name        VARCHAR(255) NOT NULL,                    # 类名
     description VARCHAR(1024),                            # 分类描述
-    parent      INT DEFAULT 0                             # 该分类的父类ID,如果为顶级分类,父ID为0
+    parent      INT DEFAULT 0,                            # 该分类的父类ID,如果为顶级分类,父ID为0
+    UNIQUE KEY (name, parent)
 )CHARSET=utf8;
 
 # 商品信息表
@@ -37,8 +38,11 @@ CREATE TABLE goods (
     cid     INT,                                          # 分类 ID
     name    VARCHAR(255),                                 # 商品名
     price   FLOAT,                                        # 商品单价
+    unit    VARCHAR(64),                                  # 商品单位
     offset  FLOAT,                                        # 商品折扣
     storage INT,                                          # 库存数量
+    description VARCHAR(2000),                            # 商品介绍
+    image   VARCHAR(2000),                                # 图片地址
     time    TIMESTAMP                                     # 更新时间
 )CHARSET=utf8;
 
