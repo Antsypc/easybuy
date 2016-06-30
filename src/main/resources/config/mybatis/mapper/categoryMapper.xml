@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.gentlemen.easybuy.dao.CategoryDao">
+       
+       <!-- 配置一个resultMap 指定返回的类型 -->
+       <resultMap id="category" type="com.gentlemen.easybuy.entity.Category">
+              <id column="id" property="id"/>
+              <id column="name" property="name"/>
+              <id column="description" property="description"/>
+              <id column="parent" property="parent"/>
+       </resultMap>
+
+       <!-- 返回list -->
+       <select id="getCategorys" resultMap="category">
+        SELECT * FROM category
+       </select>
+
+</mapper>
