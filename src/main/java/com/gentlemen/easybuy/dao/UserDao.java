@@ -1,6 +1,7 @@
 package com.gentlemen.easybuy.dao;
 
 import com.gentlemen.easybuy.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,4 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface UserDao {
     User getUserById(int id);
     User getUserByName(String username);
+    void createUser(@Param("user") User user);
+    int checkUserByPhone(@Param("phone") String phone);
 }

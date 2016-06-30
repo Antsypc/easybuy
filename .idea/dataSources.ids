@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - easybuy@localhost" uuid="02c98b7b-c111-4166-86ac-63a0bdd5e7c0">
-    <database-info product="MySQL" version="5.6.28-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.37 ( Revision: 09940f05b4c98150f352e787a2549f11a2e9da93 )">
+    <database-info product="MySQL" version="5.7.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="easybuy"/>
     <table name="admin" schema="" catalog="easybuy" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -38,8 +38,8 @@
     </table>
     <table name="orders" schema="" catalog="easybuy" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="gid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="gid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
       <column name="sum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="state" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
