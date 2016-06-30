@@ -6,9 +6,28 @@
 
 <mapper namespace="com.gentlemen.easybuy.dao.GoodsDao">
 
-    <select id="getGoodsById" parameterType="_int" resultType="com.gentlemen.easybuy.entity.Goods">
-        SELECT * FROM goods WHERE id = #{id}
+    <!-- 配置一个resultMap 指定返回的类型 -->
+    <resultMap id="goods" type="com.gentlemen.easybuy.entity.Goods">
+        <id column="id" property="id"/>
+        <id column="cid" property="cid"/>
+        <id column="name" property="name"/>
+        <id column="price" property="price"/>
+        <id column="offset" property="offset"/>
+        <id column="storage" property="storage"/>
+        <id column="time" property="time"/>
+    </resultMap>
+
+    <!-- 返回list -->
+    <select id="getGoodsByCategory" resultMap="goods">
+        SELECT * FROM goods WHERE cid = (SELECT id FROM category WHERE name LIKE CONCAT(CONCAT('%',#{categoryName},'%')))
     </select>
 
+    <select id="findGoodsByName" resultMap="goods">
+        SELECT * FROM goods WHERE name LIKE CONCAT(CONCAT('%',#{goodsName},'%'))
+    </select>
+
+    <select id="orderGoodsByPrice" resultMap="goods">
+        SELECT * FROM goods ORDER BY price DESC
+    </select>
 
 </mapper>
