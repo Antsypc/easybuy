@@ -24,4 +24,9 @@ public class AdminService implements AdminDao{
     public Admin getAdminByName(String username) {
         return adminDao.getAdminByName(username);
     }
+
+    @Override
+    public boolean updateAdmin(Admin admin) {
+        return adminDao.updateAdmin(admin);
+    }
 }

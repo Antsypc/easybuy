@@ -2,7 +2,6 @@ package com.gentlemen.easybuy.controller;
 
 import com.gentlemen.easybuy.entity.Goods;
 import com.gentlemen.easybuy.entity.Orders;
-import com.gentlemen.easybuy.entity.User;
 import com.gentlemen.easybuy.service.AdminService;
 import com.gentlemen.easybuy.service.GoodsService;
 import com.gentlemen.easybuy.service.OrdersService;
@@ -21,7 +20,7 @@ import java.util.List;
  * @version 1.0 6/29/16
  */
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/api/user")
 public class UserController {
 
     private static String SUCCESS = "{\"success\":true, \"message\":\"\"}";
@@ -35,6 +34,11 @@ public class UserController {
     @Autowired
     private GoodsService goodsService;
 
+    /**
+     * 临时,不用管
+     * @param username
+     * @return
+     */
     @RequestMapping("/admin/{username}")
     @ResponseBody
     public String getAdmin(@PathVariable String username) {
@@ -56,26 +60,13 @@ public class UserController {
         return userInfo;
     }
 
-    /**
-     * 修改用户信息
-     * @param user 用户
-     * @return 返回查找结果
-     */
-    @RequestMapping(value = "/{username}/profile", method = RequestMethod.POST)
-    @ResponseBody
-    public String modifyUser(User user) {
-        // 使用Spring默认的Converter有中文乱码问题
-        userService.modifyUser(user);
-        return SUCCESS;
-    }
 
     /**
      * 通过用户id获得用户的订单信息
      * @param username 用户的id
      * @return 返回所有订单信息
      */
-    @RequestMapping("/" +
-            "/{username}")
+    @RequestMapping("/{username}")
     @ResponseBody
     // 用户页面：用于展示用户信息
     public String getOrders(@PathVariable("username") String username) {

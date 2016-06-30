@@ -24,4 +24,14 @@ public class UserService implements UserDao {
     public User getUserByName(String username) {
         return userDao.getUserByName(username);
     }
+
+    @Override
+    public boolean addUser(User user) {
+        return userDao.addUser(user);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
 }

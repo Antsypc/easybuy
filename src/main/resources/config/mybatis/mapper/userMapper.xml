@@ -6,45 +6,33 @@
 
 <mapper namespace="com.gentlemen.easybuy.dao.UserDao">
 
-    <select id="getAdminById" resultType="com.gentlemen.easybuy.entity.User">
-        SELECT * FROM "user" WHERE id = #{id}
+    <select id="getUserById" resultType="com.gentlemen.easybuy.entity.User">
+        SELECT * FROM user WHERE id = #{id}
     </select>
 
-    <select id="getAdminByName" resultType="com.gentlemen.easybuy.entity.User">
-        SELECT * FROM "user" WHERE username = #{username}
-    </select>
-
-    <!-- by zhao -->
     <select id="getUserByName" resultType="com.gentlemen.easybuy.entity.User">
-        select * from user where username = #{username}
+        SELECT * FROM user WHERE username = #{username}
     </select>
 
-    <select id="checkUserByPhone" resultType="_int">
-        SELECT count(*) FROM USER
-        WHERE phone = #{phone}
-    </select>
-
-    <insert id="createUser" parameterType="com.gentlemen.easybuy.entity.User">
-        INSERT INTO user(username, password, phone) VALUE
-        (#{user.username}, #{user.password}, #{user.phone})
+    <insert id="addUser">
+        INSERT INTO user (username, password, phone, address)
+        VALUE (#{username}, #{password}, #{phone}, #{address})
     </insert>
 
-    <update id="modifyUser" parameterType="com.gentlemen.easybuy.entity.User">
-        UPDATE "user"
+    <update id="updateUser">
+        UPDATE user
         <set>
-            <if test="username != null and username != ''">
-                username = #{username},
-            </if>
-            <if test="password != null and password != ''">
+            <if test="password != null">
                 password = #{password},
             </if>
-            <if test="phone != null and phone != ''">
+            <if test="phone != null">
                 phone = #{phone},
             </if>
-            <if test="address != null and address != ''">
+            <if test="address != null">
                 address = #{address}
             </if>
         </set>
+        WHERE id = #{id}
     </update>
 
 </mapper>

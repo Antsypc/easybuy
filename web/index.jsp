@@ -32,7 +32,7 @@
               contentType:"application/json",
               dataType:"json",
               data: data,
-              url:"/logging/admin/login",
+              url:"/api/logging/login/admin",
               success : function(data) {
                   console.log(data);
               },

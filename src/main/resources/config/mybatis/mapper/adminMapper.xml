@@ -13,4 +13,14 @@
     <select id="getAdminByName" resultType="com.gentlemen.easybuy.entity.Admin">
         SELECT * FROM admin WHERE username = #{username}
     </select>
+
+    <update id="updateAdmin">
+        UPDATE admin
+        <set>
+            <if test="password != null">
+                password = #{password}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
 </mapper>

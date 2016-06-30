@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface AdminDao {
     Admin getAdminById(int id);
     Admin getAdminByName(String username);
+    boolean updateAdmin(Admin admin);
 }

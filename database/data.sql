@@ -6,5 +6,6 @@ INSERT INTO admin(username, password) VALUES
 
 INSERT INTO user(username, password, phone, address) VALUES
   ('小明', '123456', '13312345678', '武汉'),
-  ('小红', '123456', '15512345678', '北京');
+  ('小红', '123456', '15512345678', '北京'),
+  ('test001', '123456', '13312345678', 'China');
 

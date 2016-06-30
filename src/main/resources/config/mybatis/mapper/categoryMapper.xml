@@ -5,7 +5,7 @@
 
 
 <mapper namespace="com.gentlemen.easybuy.dao.CategoryDao">
-       
+
        <!-- 配置一个resultMap 指定返回的类型 -->
        <resultMap id="category" type="com.gentlemen.easybuy.entity.Category">
               <id column="id" property="id"/>
@@ -18,5 +18,44 @@
        <select id="getCategorys" resultMap="category">
         SELECT * FROM category
        </select>
+
+
+    <select id="getById" resultType="com.gentlemen.easybuy.entity.Category">
+        SELECT * FROM category WHERE id = #{id}
+    </select>
+
+    <select id="getAllCategories" resultType="java.util.List">
+        SELECT * FROM category
+    </select>
+
+    <select id="getParent" parameterType="com.gentlemen.easybuy.entity.Category"
+            resultType="com.gentlemen.easybuy.entity.Category">
+        SELECT * FROM category WHERE id = #{parent}
+    </select>
+
+    <insert id="addCategory" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category (name, description, parent)
+        VALUE (#{name}, #{description}, #{parent})
+    </insert>
+
+    <update id="updateCategory">
+        UPDATE category
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="parent != null">
+                parent = #{parent}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteCategory">
+        DELETE FROM category WHERE id = #{id}
+    </delete>
 
 </mapper>
