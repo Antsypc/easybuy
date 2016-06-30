@@ -13,4 +13,38 @@
     <select id="getAdminByName" resultType="com.gentlemen.easybuy.entity.User">
         SELECT * FROM "user" WHERE username = #{username}
     </select>
+
+    <!-- by zhao -->
+    <select id="getUserByName" resultType="com.gentlemen.easybuy.entity.User">
+        select * from user where username = #{username}
+    </select>
+
+    <select id="checkUserByPhone" resultType="_int">
+        SELECT count(*) FROM USER
+        WHERE phone = #{phone}
+    </select>
+
+    <insert id="createUser" parameterType="com.gentlemen.easybuy.entity.User">
+        INSERT INTO user(username, password, phone) VALUE
+        (#{user.username}, #{user.password}, #{user.phone})
+    </insert>
+
+    <update id="modifyUser" parameterType="com.gentlemen.easybuy.entity.User">
+        UPDATE "user"
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address}
+            </if>
+        </set>
+    </update>
+
 </mapper>
