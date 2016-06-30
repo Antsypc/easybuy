@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3820621642">
+  <component name="DataSourceManagerImpl" format="xml" hash="1795159847">
     <data-source source="LOCAL" name="MySQL - easybuy@localhost" uuid="02c98b7b-c111-4166-86ac-63a0bdd5e7c0">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -13,7 +13,11 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://D:/Eclipse ee/jar包/databaseDriver/mysql-connector-java-5.1.20-bin.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>
