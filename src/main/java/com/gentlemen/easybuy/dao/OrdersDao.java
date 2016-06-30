@@ -11,5 +11,7 @@ import java.util.List;
  */
 @Repository("ordersDao")
 public interface OrdersDao {
-    List<Orders> getOrdersByUserId(@Param("uid") int uid);
+    List<Orders> getOrdersByUsername(@Param("username") String username);
+    List<Orders> getCartByUsername(@Param("username") String username);
+    void cancelOrders(@Param("username") String username, @Param("ordersId") int orderId);
 }

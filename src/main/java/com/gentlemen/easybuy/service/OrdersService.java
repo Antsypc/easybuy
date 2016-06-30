@@ -2,6 +2,7 @@ package com.gentlemen.easybuy.service;
 
 import com.gentlemen.easybuy.dao.OrdersDao;
 import com.gentlemen.easybuy.entity.Orders;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,19 @@ public class OrdersService implements OrdersDao {
     @Autowired
     private OrdersDao ordersDao;
 
-    public List<Orders> getOrdersByUserId(int uid) {
-        return ordersDao.getOrdersByUserId(uid);
+
+    @Override
+    public List<Orders> getOrdersByUsername(String username) {
+        return ordersDao.getOrdersByUsername(username);
+    }
+
+    @Override
+    public List<Orders> getCartByUsername(String username) {
+        return ordersDao.getCartByUsername(username);
+    }
+
+    @Override
+    public void cancelOrders( String username, int orderId) {
+        ordersDao.cancelOrders(username, orderId);
     }
 }

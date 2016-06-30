@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("userDao")
 public interface UserDao {
-    User getUserById(int id);
-    User getUserByName(String username);
+    User getUserByName(@Param("username") String username);
     void createUser(@Param("user") User user);
     int checkUserByPhone(@Param("phone") String phone);
+    void modifyUser(@Param("user") User user);
 }

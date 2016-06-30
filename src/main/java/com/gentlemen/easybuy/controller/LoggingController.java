@@ -22,6 +22,8 @@ import javax.servlet.http.HttpSession;
 public class LoggingController {
     private static String SUCCESS = "{\"success\":true, \"message\":\"\"}";
     private static String FAILURE = "{\"success\":false, \"message\":\"There is no user or wrong password.\"}";
+    private static String USER_EXISTED =
+            "{\"success\":false, \"message\":\"该手机号已经被注册.\"}";
 
     @Autowired
     private AdminService adminService;
@@ -66,5 +68,28 @@ public class LoggingController {
         session.removeAttribute("id");
         session.removeAttribute("username");
         return SUCCESS;
+    }
+
+
+//    @RequestMapping(value = "user/register", method = RequestMethod.GET)
+//    public String showRegister() {
+//        return SUCCESS;
+//    }
+
+    /**
+     * 用户注册
+     * @param user 用户
+     * @return
+     */
+    @RequestMapping(value = "user/register", method = RequestMethod.POST)
+    @ResponseBody
+    public String doRegister(User user) {
+        System.out.println("register");
+        if (userService.checkUserByPhone(user.getPhone()) == 0) {
+            userService.createUser(user);
+            return SUCCESS;
+        }
+        else
+            return USER_EXISTED;
     }
 }

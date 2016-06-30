@@ -4,24 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.gentlemen.easybuy.dao.UserDao">
+<mapper namespace="com.gentlemen.easybuy.dao.GoodsDao">
 
-    <select id="getAdminById" resultType="com.gentlemen.easybuy.entity.User">
-        SELECT * FROM "user" WHERE id = #{id}
+    <select id="getGoodsById" parameterType="_int" resultType="com.gentlemen.easybuy.entity.Goods">
+        SELECT * FROM goods WHERE id = #{id}
     </select>
 
-    <select id="getAdminByName" resultType="com.gentlemen.easybuy.entity.User">
-        SELECT * FROM "user" WHERE username = #{username}
-    </select>
-
-    <select id="checkUserByPhone" resultType="_int">
-        SELECT count(*) FROM USER
-        WHERE phone = #{phone}
-    </select>
-
-    <insert id="createUser" parameterType="com.gentlemen.easybuy.entity.User">
-        INSERT INTO user(username, password, phone) VALUE
-        (#{user.username}, #{user.password}, #{user.phone})
-    </insert>
 
 </mapper>

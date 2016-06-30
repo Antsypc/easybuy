@@ -17,11 +17,6 @@ public class UserService implements UserDao {
     private UserDao userDao;
 
     @Override
-    public User getUserById(int id) {
-        return userDao.getUserById(id);
-    }
-
-    @Override
     public User getUserByName(String username) {
         return userDao.getUserByName(username);
     }
@@ -34,6 +29,11 @@ public class UserService implements UserDao {
     @Override
     public int checkUserByPhone(String phone) {
         return userDao.checkUserByPhone(phone);
+    }
+
+    @Override
+    public void modifyUser(@Param("user") User user) {
+        userDao.modifyUser(user);
     }
 
 

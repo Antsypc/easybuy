@@ -2,6 +2,7 @@ package com.gentlemen.easybuy.controller;
 
 import com.gentlemen.easybuy.entity.Goods;
 import com.gentlemen.easybuy.entity.Orders;
+import com.gentlemen.easybuy.entity.User;
 import com.gentlemen.easybuy.service.AdminService;
 import com.gentlemen.easybuy.service.GoodsService;
 import com.gentlemen.easybuy.service.OrdersService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -21,6 +23,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/user/")
 public class UserController {
+
+    private static String SUCCESS = "{\"success\":true, \"message\":\"\"}";
 
     @Autowired
     private AdminService adminService;
@@ -39,27 +43,45 @@ public class UserController {
     }
 
     /**
-     * 通过用户id获得用户信息，在用户信息页面进行展示
-     * @param id 用户id
+     * 获取用户信息
+     * @param username 用户名（唯一）
      * @return 返回查找结果
      */
-    @RequestMapping("/user-info/{id}")
+    @RequestMapping(value = "/{username}/profile", method = RequestMethod.GET)
     @ResponseBody
-    public String getUser(@PathVariable("id") int id) {
-        return userService.getUserById(id).toString();
+    public String getUser(@PathVariable("username") String username) {
+        // 使用Spring默认的Converter有中文乱码问题
+        String userInfo = userService.getUserByName(username).toString();
+        System.out.println(userInfo);
+        return userInfo;
+    }
+
+    /**
+     * 修改用户信息
+     * @param user 用户
+     * @return 返回查找结果
+     */
+    @RequestMapping(value = "/{username}/profile", method = RequestMethod.POST)
+    @ResponseBody
+    public String modifyUser(User user) {
+        // 使用Spring默认的Converter有中文乱码问题
+        userService.modifyUser(user);
+        return SUCCESS;
     }
 
     /**
      * 通过用户id获得用户的订单信息
-     * @param uid 用户的id
+     * @param username 用户的id
      * @return 返回所有订单信息
      */
-    @RequestMapping("/orders-info/{uid}")
+    @RequestMapping("/" +
+            "/{username}")
     @ResponseBody
     // 用户页面：用于展示用户信息
-    public String getOrders(@PathVariable("uid") int uid) {
+    public String getOrders(@PathVariable("username") String username) {
         // 这里只是使用临时数据格式，实际要使用json，这里仅仅是测试使用
-        List<Orders> ordersList = ordersService.getOrdersByUserId(uid);
+        List<Orders> ordersList = ordersService.getOrdersByUsername(username);
+        System.out.println("ordersList size: " + ordersList.size());
         StringBuffer sb = new StringBuffer("orders");
         for (Orders orders : ordersList) {
             Goods goods = goodsService.getGoodsById(orders.getGid());
