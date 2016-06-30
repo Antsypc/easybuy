@@ -63,15 +63,15 @@ public class UserController {
 
     /**
      * 通过用户id获得用户的订单信息
-     * @param username 用户的id
+     * @param userId 用户的id
      * @return 返回所有订单信息
      */
     @RequestMapping("/{username}")
     @ResponseBody
     // 用户页面：用于展示用户信息
-    public String getOrders(@PathVariable("username") String username) {
+    public String getOrders(@PathVariable("userId") int userId) {
         // 这里只是使用临时数据格式，实际要使用json，这里仅仅是测试使用
-        List<Orders> ordersList = ordersService.getOrdersByUsername(username);
+        List<Orders> ordersList = ordersService.getOrdersByUId(userId);
         System.out.println("ordersList size: " + ordersList.size());
         StringBuffer sb = new StringBuffer("orders");
         for (Orders orders : ordersList) {

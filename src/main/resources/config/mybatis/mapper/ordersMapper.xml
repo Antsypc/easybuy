@@ -7,15 +7,15 @@
 <mapper namespace="com.gentlemen.easybuy.dao.OrdersDao">
 
     <!-- 通过 username 获得该用户已下单的货物 -->
-    <select id="getOrdersByUsername" resultType="com.gentlemen.easybuy.entity.Orders">
-        SELECT * FROM orders WHERE username = #{username} and state = 1;
+    <select id="getOrdersByUId" resultType="com.gentlemen.easybuy.entity.Orders">
+        SELECT * FROM orders WHERE uid = #{userId} and state = 1;
     </select>
 
     <!-- 通过 username 获取该用户待付款的订单，即购物车中的货物 -->
     <select id="getCartByUsername" resultType="com.gentlemen.easybuy.entity.Orders">
         SELECT *
         FROM orders
-        WHERE username = #{username} and state = 0;
+        WHERE uid = #{userId} and state = 0;
     </select>
 
 
@@ -23,7 +23,7 @@
         UPDATE orders
         SET state = -1
         <where>
-            username = #{username}
+            uid = #{userId}
             <if test="ordersId != 0">
                 and id = #{ordersId}
             </if>

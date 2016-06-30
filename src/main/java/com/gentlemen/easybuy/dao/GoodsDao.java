@@ -1,8 +1,10 @@
 package com.gentlemen.easybuy.dao;
 
 import com.gentlemen.easybuy.entity.Goods;
+import org.apache.ibatis.annotations.Param;
 
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,4 +34,8 @@ public interface GoodsDao {
      */
     List<Goods> orderGoodsByPrice();
 
+    /**
+     * 获取数据，用于显示到主页
+     */
+    List<Goods> getGoodsSnap();
 }

@@ -16,19 +16,18 @@ public class OrdersService implements OrdersDao {
     @Autowired
     private OrdersDao ordersDao;
 
-
     @Override
-    public List<Orders> getOrdersByUsername(String username) {
-        return ordersDao.getOrdersByUsername(username);
+    public List<Orders> getOrdersByUId(@Param("userId") int userId) {
+        return ordersDao.getOrdersByUId(userId);
     }
 
     @Override
-    public List<Orders> getCartByUsername(String username) {
-        return ordersDao.getCartByUsername(username);
+    public List<Orders> getCartByUId(@Param("userId") int userId) {
+        return ordersDao.getCartByUId(userId);
     }
 
     @Override
-    public void cancelOrders( String username, int orderId) {
-        ordersDao.cancelOrders(username, orderId);
+    public void cancelOrders(@Param("userId") int userId, @Param("ordersId") int orderId) {
+        ordersDao.cancelOrders(userId, orderId);
     }
 }

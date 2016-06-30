@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -32,5 +35,18 @@ public class GoodsService implements GoodsDao {
 
     public List<Goods> orderGoodsByPrice() {
         return goodsDao.orderGoodsByPrice();
+    }
+
+    /**
+     * 返回的数据数量要小于 15 条
+     * @return
+     */
+    @Override
+    public List<Goods> getGoodsSnap() {
+        List<Goods> list = goodsDao.getGoodsSnap();
+        if (list.size() > 15)
+            return list.subList(0, 15);
+        else
+            return list;
     }
 }

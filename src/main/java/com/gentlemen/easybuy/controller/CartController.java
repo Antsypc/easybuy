@@ -27,14 +27,14 @@ public class CartController {
 
     /**
      * 显示购物车中的信息
-     * @param username 用户id
+     * @param userId 用户id
      * @param model 将信息存储到 model 中
      * @return 返回到购物车信息显示页面
      */
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     @ResponseBody
-    public String showCart(@PathVariable("username") String username, Map<String, Object> model) {
-        List<Orders> cartInfo = ordersService.getCartByUsername(username);
+    public String showCart(@PathVariable("userId") int userId, Map<String, Object> model) {
+        List<Orders> cartInfo = ordersService.getCartByUId(userId);
         System.out.println("cartInfo: " + cartInfo);
         model.put("cartInfo", cartInfo);
         return "test-cart";
@@ -42,15 +42,15 @@ public class CartController {
 
     /**
      * 取消购物车中的订单
-     * @param username 用户id
+     * @param userId 用户id
      * @param ordersId 订单id
      * @return 转向到：购物车信息展示页面
      */
-    @RequestMapping(value = "/{username}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{userId}", method = RequestMethod.POST)
     @ResponseBody
-    public String cancelOrders(@PathVariable("username") String username, int ordersId) {
+    public String cancelOrders(@PathVariable("userId") int userId, int ordersId) {
         System.out.println("do cancel");
-        ordersService.cancelOrders(username, ordersId);
+        ordersService.cancelOrders(userId, ordersId);
         return SUCCESS;
     }
 }

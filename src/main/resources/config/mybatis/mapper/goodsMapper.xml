@@ -29,5 +29,9 @@
     <select id="orderGoodsByPrice" resultMap="goods">
         SELECT * FROM goods ORDER BY price DESC
     </select>
-
+    <select id="getGoodsSnap" resultMap="goods">
+        SELECT *
+        FROM goods
+        ORDER BY time ASC
+    </select>
 </mapper>

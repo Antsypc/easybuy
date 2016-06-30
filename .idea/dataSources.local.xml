@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - easybuy@localhost" uuid="02c98b7b-c111-4166-86ac-63a0bdd5e7c0" />
+    <data-source name="MySQL - easybuy@localhost" uuid="02c98b7b-c111-4166-86ac-63a0bdd5e7c0">
+      <user-name>gentlemen</user-name>
+      <user-password>dfcddfcfdfc4dfdedfc6dfcfdfc7dfcfdfc4</user-password>
+      <schema-pattern>easybuy.*</schema-pattern>
+      <default-schemas>easybuy.*</default-schemas>
+    </data-source>
   </component>
 </project>

@@ -1,5 +1,7 @@
 package com.gentlemen.easybuy.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gentlemen.easybuy.entity.Goods;
 import org.junit.After;
 import org.junit.Before;
@@ -20,7 +22,7 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath*:config/spring.xml"})
 public class GoodsServiceTest {
 
-    private GoodsServer goodsServer;
+    private GoodsService goodsService;
 
     /**
      * 这个before方法在所有的测试方法之前执行，并且只执行一次
@@ -32,7 +34,7 @@ public class GoodsServiceTest {
         //使用"spring.xml"和"spring.xml"这两个配置文件创建Spring上下文
         ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring.xml"});
         //从Spring容器中根据bean的id取出我们要使用的categoryService对象
-        goodsServer = (GoodsServer) ac.getBean("goodsServer");
+        goodsService = (GoodsService) ac.getBean("goodsService");
     }
 
     @After
@@ -44,7 +46,7 @@ public class GoodsServiceTest {
      */
     @Test
     public void testGetGoodsByCategory() throws Exception {
-        List<Goods> goods = goodsServer.getGoodsByCategory("com");
+        List<Goods> goods = goodsService.getGoodsByCategory("com");
         for(Goods good : goods){
             System.out.println(good.getName());
         }
@@ -56,7 +58,7 @@ public class GoodsServiceTest {
      */
     @Test
     public void testFindGoodsByName() throws Exception {
-        List<Goods> goodses = goodsServer.findGoodsByName("A");
+        List<Goods> goodses = goodsService.findGoodsByName("A");
         for(Goods goods : goodses)
             System.out.println(goods.getName());
     }
@@ -66,8 +68,16 @@ public class GoodsServiceTest {
      */
     @Test
     public void testOrderGoodsByPrice() throws Exception {
-        List<Goods> goodses = goodsServer.orderGoodsByPrice();
+        List<Goods> goodses = goodsService.orderGoodsByPrice();
         for(Goods goods : goodses)
             System.out.println(goods.getName());
+    }
+
+    @Test
+    public void testGetGoodsSnap() throws JsonProcessingException {
+        List<Goods> list = goodsService.getGoodsSnap();
+        System.out.println(list.size());
+        String json = "goodsInfo" + new ObjectMapper().writeValueAsString(list);
+        System.out.println(json);
     }
 }
