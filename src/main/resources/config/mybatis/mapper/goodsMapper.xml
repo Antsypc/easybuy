@@ -34,4 +34,51 @@
         FROM goods
         ORDER BY time ASC
     </select>
+
+    <select id="getAllGoods" resultType="java.util.List">
+        SELECT * FROM goods
+    </select>
+
+    <insert id="addGoods">
+        INSERT INTO goods (cid, name, price, unit, offset, storage, description, image, time)
+         VALUE (#{cid}, #{name}, #{price}, #{unit}, #{offset}, #{storage}, #{description}, #{image}, #{time})
+    </insert>
+
+    <update id="updateGoods">
+        UPDATE goods
+        <set>
+            <if test="cid != null">
+                cid = #{cid},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="unit != null">
+                unit = #{unit},
+            </if>
+            <if test="offset != null">
+                offset = #{offset},
+            </if>
+            <if test="storage != null">
+                storage = #{storage},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="time != null">
+                time = #{time}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteGoods">
+        DELETE FROM goods WHERE id = #{id}
+    </delete>
 </mapper>

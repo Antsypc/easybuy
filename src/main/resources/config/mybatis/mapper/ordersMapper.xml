@@ -18,17 +18,46 @@
         WHERE uid = #{userId} and state = 0;
     </select>
 
+    <select id="getAllOrders">
+        SELECT * FROM orders
+    </select>
 
-    <update id="cancelOrder">
-        UPDATE orders
-        SET state = -1
-        <where>
-            uid = #{userId}
-            <if test="ordersId != 0">
-                and id = #{ordersId}
-            </if>
-        </where>
+
+    <insert id="addOrder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO orders (uid, gid, time, sum, state, total)
+        VALUE (#{uid}, #{gid}, #{time}, #{sum}, #{state}, #{total})
+    </insert>
+
+    <update id="payOrder">
+        UPDATE orders SET state = 1 WHERE id = #{id}
     </update>
 
+    <update id="cancelOrder">
+        UPDATE orders SET state = -1 WHERE id = #{id}
+    </update>
 
+    <update id="updateOrder">
+        UPDATE orders
+        <set>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="gid != null">
+                gid = #{gid},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="sum != null">
+                sum = #{sum},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="total != null">
+                total = #{total}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
 </mapper>

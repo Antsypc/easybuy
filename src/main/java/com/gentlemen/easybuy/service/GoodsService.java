@@ -49,4 +49,44 @@ public class GoodsService implements GoodsDao {
         else
             return list;
     }
+
+    /**
+     * 获取所有商品信息
+     * @return
+     */
+    @Override
+    public List<Goods> getAllGoods() {
+        return goodsDao.getAllGoods();
+    }
+
+    /**
+     * 添加一件商品
+     * @param goods Goods
+     * @return 是否添加成功
+     */
+    @Override
+    public boolean addGoods(Goods goods) {
+        return goodsDao.addGoods(goods);
+    }
+
+    /**
+     * 更新一件商品
+     *
+     * @param goods 商品
+     * @return 更新成功与否
+     */
+    @Override
+    public boolean updateGoods(Goods goods) {
+        return goodsDao.addGoods(goods);
+    }
+
+    /**
+     * 根据商品 ID 删除商品
+     * @param id 商品 ID
+     * @return 是否成功删除
+     */
+    @Override
+    public boolean deleteGoods(int id) {
+        return goodsDao.deleteGoods(id);
+    }
 }

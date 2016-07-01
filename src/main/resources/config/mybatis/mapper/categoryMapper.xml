@@ -6,20 +6,6 @@
 
 <mapper namespace="com.gentlemen.easybuy.dao.CategoryDao">
 
-       <!-- 配置一个resultMap 指定返回的类型 -->
-       <resultMap id="category" type="com.gentlemen.easybuy.entity.Category">
-              <id column="id" property="id"/>
-              <id column="name" property="name"/>
-              <id column="description" property="description"/>
-              <id column="parent" property="parent"/>
-       </resultMap>
-
-       <!-- 返回list -->
-       <select id="getCategorys" resultMap="category">
-        SELECT * FROM category
-       </select>
-
-
     <select id="getById" resultType="com.gentlemen.easybuy.entity.Category">
         SELECT * FROM category WHERE id = #{id}
     </select>
