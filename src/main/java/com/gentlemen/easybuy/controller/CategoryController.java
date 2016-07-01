@@ -41,7 +41,7 @@ public class CategoryController {
      * @param response HttpServletResponse
      * @throws IOException
      */
-    @RequestMapping(path = "", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(path = "", method = RequestMethod.POST, consumes = "application/json", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String addCategory(@RequestBody Category category, HttpServletResponse response) throws Exception {
         try {
@@ -60,7 +60,7 @@ public class CategoryController {
      * @return 更新成功返回 Category 对象 JSON,失败状态码为400
      * @throws Exception
      */
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String updateCategory(@RequestBody Category category, HttpServletResponse response) throws Exception {
         if(categoryService.updateCategory(category)) {

@@ -41,7 +41,7 @@ public class GoodsController {
      * @return Goods JSON 数组
      * @throws JsonProcessingException
      */
-    @RequestMapping(path = "", method = RequestMethod.GET, params = "all=true")
+    @RequestMapping(path = "", method = RequestMethod.GET, params = "all=true", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getAllGoods() throws JsonProcessingException {
         List<Goods> list = goodsService.getAllGoods();
@@ -55,9 +55,14 @@ public class GoodsController {
      * @return Goods JSON
      * @throws JsonProcessingException
      */
-    @RequestMapping(params = "/{id}", method = RequestMethod.GET)
-    public String getGoodsById(@PathVariable int id, HttpServletResponse response) throws JsonProcessingException {
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getGoodsById(@PathVariable int id, HttpServletResponse response) throws IOException {
         Goods goods = goodsService.getGoodsById(id);
+        if (goods == null) {
+            response.sendError(400);
+            return "";
+        }
         return new ObjectMapper().writeValueAsString(goods);
     }
 
@@ -68,7 +73,7 @@ public class GoodsController {
      * @param response HttpServletResponse
      * @throws IOException
      */
-    @RequestMapping(params = "", method = RequestMethod.POST)
+    @RequestMapping(path = "", method = RequestMethod.POST)
     @ResponseBody
     public void addGoods(@RequestBody Goods goods, HttpServletResponse response) throws IOException {
         goods.setTime(new Timestamp(new Date().getTime()));
@@ -84,7 +89,7 @@ public class GoodsController {
      * @param response HttpServletResponse
      * @throws IOException
      */
-    @RequestMapping(params = "/{id}", consumes = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", consumes = "application/json", method = RequestMethod.PUT)
     @ResponseBody
     public void updateGoods(@RequestBody Goods goods, @PathVariable int id, HttpServletResponse response) throws IOException {
         goods.setId(id);
@@ -99,7 +104,7 @@ public class GoodsController {
      * @param response HttpServletResponse
      * @throws IOException
      */
-    @RequestMapping(params = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteGoods(@PathVariable int id, HttpServletResponse response) throws IOException {
         if(!goodsService.deleteGoods(id))

@@ -26,6 +26,10 @@
         SELECT * FROM goods WHERE name LIKE CONCAT(CONCAT('%',#{goodsName},'%'))
     </select>
 
+    <select id="getGoodsById" resultType="com.gentlemen.easybuy.entity.Goods">
+        SELECT * FROM goods WHERE id = #{id}
+    </select>
+
     <select id="orderGoodsByPrice" resultMap="goods">
         SELECT * FROM goods ORDER BY price DESC
     </select>
