@@ -38,4 +38,33 @@ public interface GoodsDao {
      * 获取数据，用于显示到主页
      */
     List<Goods> getGoodsSnap();
+
+    /**
+     * 获取所有商品信息
+     *
+     * @return list
+     */
+    List<Goods> getAllGoods();
+
+    /**
+     * 添加一件商品
+     * @param goods Goods
+     * @return 是否添加成功
+     */
+    boolean addGoods(Goods goods);
+
+    /**
+     * 更新一件商品
+     *
+     * @param goods 商品
+     * @return 更新成功与否
+     */
+    boolean updateGoods(Goods goods);
+
+    /**
+     * 根据商品 ID 删除商品
+     * @param id 商品 ID
+     * @return 是否成功删除
+     */
+    boolean deleteGoods(int id);
 }

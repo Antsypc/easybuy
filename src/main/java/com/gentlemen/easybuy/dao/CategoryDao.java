@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository("categoryDao")
 public interface CategoryDao {
-    List<Category> getAllCategories();
     Category getById(int id);
+    List<Category> getAllCategories();
     Category getParent(Category category);
     int addCategory(Category category);
 

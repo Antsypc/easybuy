@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
+<<<<<<< 376d4050b3260f2b21d0ab2429c7c572ec2e93c8
     <data-source name="MySQL - easybuy@localhost" uuid="02c98b7b-c111-4166-86ac-63a0bdd5e7c0">
       <user-name>gentlemen</user-name>
       <user-password>dfcddfcfdfc4dfdedfc6dfcfdfc7dfcfdfc4</user-password>
       <schema-pattern>easybuy.*</schema-pattern>
       <default-schemas>easybuy.*</default-schemas>
     </data-source>
+=======
+    <data-source name="MySQL - easybuy@localhost" uuid="02c98b7b-c111-4166-86ac-63a0bdd5e7c0" />
+>>>>>>> dao service OK from ypc
   </component>
 </project>

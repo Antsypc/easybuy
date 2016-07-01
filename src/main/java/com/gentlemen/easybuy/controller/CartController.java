@@ -50,7 +50,7 @@ public class CartController {
     @ResponseBody
     public String cancelOrders(@PathVariable("userId") int userId, int ordersId) {
         System.out.println("do cancel");
-        ordersService.cancelOrders(userId, ordersId);
+        ordersService.cancelOrder( ordersId);
         return SUCCESS;
     }
 }
