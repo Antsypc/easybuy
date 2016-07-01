@@ -18,7 +18,7 @@
         WHERE uid = #{userId} and state = 0;
     </select>
 
-    <select id="getAllOrders">
+    <select id="getAllOrders" resultType="com.gentlemen.easybuy.entity.Orders">
         SELECT * FROM orders
     </select>
 

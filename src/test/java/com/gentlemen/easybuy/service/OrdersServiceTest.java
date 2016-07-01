@@ -1,5 +1,6 @@
 package com.gentlemen.easybuy.service; 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gentlemen.easybuy.entity.Orders;
 import org.junit.Test;
 import org.junit.Before; 
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -56,7 +58,9 @@ public class OrdersServiceTest {
      * Method: getAllOrders() 
      */ 
     @Test
-    public void testGetAllOrders() throws Exception { 
+    public void testGetAllOrders() throws Exception {
+        List<Orders> list = ordersService.getAllOrders();
+        System.out.println(new ObjectMapper().writeValueAsString(list));
     } 
     
     /** 
