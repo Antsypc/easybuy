@@ -5,13 +5,10 @@ import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.*;
 
 /** 
  * CategoryService Tester. 
@@ -21,14 +18,14 @@ import static org.junit.Assert.*;
  * @version 1.0 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/spring.xml"})
+@ContextConfiguration(locations = {"classpath*:config/spring/spring.xml"})
 public class CategoryServiceTest {
 
     private CategoryService categoryService;
 
     @Before
     public void before() throws Exception {
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring/spring.xml"});
         categoryService = (CategoryService) ac.getBean("categoryService");
     } 
 

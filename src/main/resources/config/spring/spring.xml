@@ -8,34 +8,44 @@
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 引入 database.properties 属性文件 -->
-    <context:property-placeholder location="classpath:config.database/database.properties"/>
+    <context:property-placeholder location="classpath:config/database/database.properties"/>
 
     <!-- 自动扫描(自动注入)，扫描com.gentlemen.easybuy.service这个包以及它的子包的所有使用@Service注解标注的类 -->
     <context:component-scan base-package="com.gentlemen.easybuy.service"/>
     <context:component-scan base-package="com.gentlemen.easybuy.dao"/>
     <context:component-scan base-package="com.gentlemen.easybuy.controller"/>
 
-    <!-- 配置数据源 -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driver}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
+    <!-- 配置数据源, c3p0 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
+        <property name="maxPoolSize" value="30"/>
+        <property name="minPoolSize" value="10"/>
+        <!-- 关不连接后不自动 commit -->
+        <property name="autoCommitOnClose" value="false"/>
+        <property name="checkoutTimeout" value="1000"/>
+        <!-- 重试次数 -->
+        <property name="acquireRetryAttempts" value="2"/>
     </bean>
 
     <!-- ========================================针对myBatis的配置项============================== -->
-    <!-- 配置sqlSessionFactory -->
+    <!-- 配置 sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
         <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:config/mybatis/mapper/*.xml"/>
+        <!-- 扫描 entity 包,自动识别别名,如果有多个包用`;`隔开 -->
+        <property name="typeAliasesPackage" value="com.gentlemen.easybuy.entity"/>
     </bean>
-    <!-- 配置扫描器 -->
+    <!-- 配置扫描器,扫描 DAO 接口的包,注入 bean 容器.这样就不用去实现接口,框架自动实现接口类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 注入 bean -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 扫描com.gentlemen.easybuy.dao这个包以及它的子包下的所有映射接口类 -->
         <property name="basePackage" value="com.gentlemen.easybuy.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <!-- 配置Spring的事务管理器 -->

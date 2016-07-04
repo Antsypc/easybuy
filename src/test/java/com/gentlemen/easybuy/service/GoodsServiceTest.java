@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置了@ContextConfiguration注解并使用该注解的locations属性指明spring和配置文件之后，
-@ContextConfiguration(locations = {"classpath*:config/spring.xml"})
+@ContextConfiguration(locations = {"classpath*:config/spring/spring.xml"})
 public class GoodsServiceTest {
 
     private GoodsService goodsService;
@@ -32,7 +32,7 @@ public class GoodsServiceTest {
     @Before
     public void before() throws Exception {
         //使用"spring.xml"和"spring.xml"这两个配置文件创建Spring上下文
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring/spring.xml"});
         //从Spring容器中根据bean的id取出我们要使用的categoryService对象
         goodsService = (GoodsService) ac.getBean("goodsService");
     }

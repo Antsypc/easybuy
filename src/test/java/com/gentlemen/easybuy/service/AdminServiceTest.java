@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置了@ContextConfiguration注解并使用该注解的locations属性指明spring和配置文件之后，
-@ContextConfiguration(locations = {"classpath*:config/spring.xml"})
+@ContextConfiguration(locations = {"classpath*:config/spring/spring.xml"})
 public class AdminServiceTest { 
 
     private AdminService adminService;
@@ -30,8 +30,11 @@ public class AdminServiceTest {
      */
     @Before
     public void before() throws Exception {
+        // 下面这种方法可以直接在 adminService 上加 @Resources
+
+
         //使用"spring.xml"和"spring.xml"这两个配置文件创建Spring上下文
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring/spring.xml"});
         //从Spring容器中根据bean的id取出我们要使用的userService对象
         adminService = (AdminService) ac.getBean("adminService");
     } 

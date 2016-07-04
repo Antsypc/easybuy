@@ -10,7 +10,7 @@
         SELECT * FROM category WHERE id = #{id}
     </select>
 
-    <select id="getAllCategories" resultType="java.util.List">
+    <select id="getAllCategories" resultType="com.gentlemen.easybuy.entity.Category">
         SELECT * FROM category
     </select>
 

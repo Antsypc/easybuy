@@ -10,8 +10,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 /** 
  * UserService Tester. 
  * 
@@ -20,13 +18,13 @@ import static org.junit.Assert.*;
  * @version 1.0 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/spring.xml"})
+@ContextConfiguration(locations = {"classpath*:config/spring/spring.xml"})
 public class UserServiceTest { 
 
     private UserService userService;
     @Before
     public void before() throws Exception {
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring/spring.xml"});
         userService = (UserService) ac.getBean("userService");
     } 
 

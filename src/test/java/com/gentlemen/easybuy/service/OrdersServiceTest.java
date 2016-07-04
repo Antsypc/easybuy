@@ -15,8 +15,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /** 
  * OrdersService Tester. 
  * 
@@ -25,14 +23,14 @@ import static org.junit.Assert.*;
  * @version 1.0 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/spring.xml"})
+@ContextConfiguration(locations = {"classpath*:config/spring/spring.xml"})
 public class OrdersServiceTest {
 
     private OrdersService ordersService;
 
     @Before
     public void before() throws Exception {
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"config/spring/spring.xml"});
         ordersService = (OrdersService) ac.getBean("ordersService");
     }
 

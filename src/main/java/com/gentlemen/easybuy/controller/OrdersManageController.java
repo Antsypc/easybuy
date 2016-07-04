@@ -8,6 +8,7 @@ import com.gentlemen.easybuy.entity.Orders;
 import com.gentlemen.easybuy.service.GoodsService;
 import com.gentlemen.easybuy.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author ants_ypc
  * @version 1.0 7/1/16
  */
+@Controller
 @RequestMapping("/api/admin/orders")
 public class OrdersManageController {
 
@@ -33,7 +35,7 @@ public class OrdersManageController {
      * @return List JSON
      * @throws JsonProcessingException
      */
-    @RequestMapping(path = "", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getAllOrders() throws JsonProcessingException {
         List<Orders> list = ordersService.getAllOrders();
